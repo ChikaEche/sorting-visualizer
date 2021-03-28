@@ -19,6 +19,10 @@ body {
     background-color: #004FFF;
 }
 
+#select {
+    margin: 10px;
+}
+
 .button {
     display: flex;
     flex-direction: column;

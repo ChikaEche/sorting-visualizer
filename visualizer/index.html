@@ -2,13 +2,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sorting Visualizer</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css"></link>
 </head>
 <body>
     <div class="button">
-        <h3>Bubble sort</h3>
+        <h3 id="tittle">Bubble sort</h3>
+        <select class="form-select" id="select" aria-label="Default select example">
+            <option selected>Bubble Sort</option>
+            <option value="1">Selection Sort</option>
+        </select>
         <button type="button" id="button" class="btn btn-primary">Generate random numbers</button>
     </div>
     <div id="container">
