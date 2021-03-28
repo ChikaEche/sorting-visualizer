@@ -1,14 +1,31 @@
+body {
+    margin: 10px;
+}
+
 #container {
-    margin-top: 200px;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 100%;
     justify-content: center;
+    align-items: flex-end;
+    margin-top: 40px;
 }
 
 #container div {
+    display: flex;
+    justify-content: center;
     width: 5%;
     margin: 20px;
-    background-color: green;
+    background-color: #004FFF;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    margin: 5px;
 }
