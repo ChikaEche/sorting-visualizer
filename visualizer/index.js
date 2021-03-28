@@ -60,17 +60,40 @@ const selectionSort = (tempArr = array, count = 1) => {
     }
 }
 
+const insertionSort = (tempArr = array, count = 1) => {
+    for(let startIndex = 0; startIndex < tempArr.length - 1; startIndex++) {
+        if(tempArr[startIndex] > tempArr[startIndex + 1]) {
+            for(let currentIndex = startIndex + 1; currentIndex > 0; currentIndex--) {
+                if(tempArr[currentIndex] < tempArr[currentIndex - 1]) {
+                    const temp = tempArr[currentIndex];
+                    tempArr[currentIndex] = tempArr[currentIndex - 1];
+                    tempArr[currentIndex - 1] = temp;
+                    let arr1 = [...tempArr]
+                    setTimeout((currentIdx = currentIndex, arr = arr1) => {
+                        alterElements(
+                            currentIdx, currentIdx - 1, arr[currentIdx], arr[currentIdx - 1]
+                        )
+                    }, (1900 * count) + 500)
+                    ++count
+                }
+            }
+        }
+    }
+    console.log({tempArr, array})
+}
+
 // map to store and easily retrive the current sorting algorithm tom implement
 let sortingAlgorithmMap = {
     'bubbleSort' : bubbleSort,
-    'selectionSort': selectionSort
+    'selectionSort': selectionSort,
+    'insertionSort': insertionSort
 }
 
 /**
  * Initializing divs with initial numbers and pre determined array
  */
 let container = document.getElementById('container');
-let choosenSortingAlgorithm = 'selectionSort'
+let choosenSortingAlgorithm = 'bubbleSort'
 const blue = '#004FFF'
 let prev1 = 0;
 let prev2 = 0;
@@ -108,6 +131,11 @@ document.getElementById('select').onchange = () => {
         case 1:
             choosenSortingAlgorithm = 'selectionSort';
             document.getElementById('tittle').innerHTML = 'Selection Sort'
+            break;
+
+        case 2:
+            choosenSortingAlgorithm = 'insertionSort';
+            document.getElementById('tittle').innerHTML = 'Insertion Sort'
             break;
     }
 }
