@@ -3,8 +3,7 @@
  * Sorting algrorithms
  */
 const bubbleSort = (tempArr = array, endingIndex = array.length - 1, count = 1) => {
-    document.getElementById('button').disabled = true
-    document.getElementById('select').disabled = true
+    disableButton();
     for(endingIndex; endingIndex >= 0; endingIndex--) {
         for(let currentIndex = 0; currentIndex < endingIndex; currentIndex++) {
             if(array[currentIndex] > array[currentIndex + 1]) {
@@ -16,19 +15,18 @@ const bubbleSort = (tempArr = array, endingIndex = array.length - 1, count = 1) 
                     alterElements(
                         currentIdx, currentIdx + 1, arr[currentIdx], arr[currentIdx + 1]
                     )
-                }, (1900 * count) + 500)
+                }, (swappingSpeed * count) + 500)
                 ++count
             }
         }
         if (endingIndex === 0) {
-            setTimeout(enableButton, (1900 * count))
+            setTimeout(enableButton, (swappingSpeed * count))
         }
     }
 }
 
 const selectionSort = (tempArr = array, count = 1) => {
-    document.getElementById('button').disabled = true
-    document.getElementById('select').disabled = true
+    disableButton();
     let found = true;
     let index = 0;
     for(let startIndex = 0; startIndex < tempArr.length; startIndex++) {
@@ -51,7 +49,7 @@ const selectionSort = (tempArr = array, count = 1) => {
                 alterElements(
                     currentIdx, min, arr[currentIdx], arr[min]
                 )
-            }, (1900 * count) + 500)
+            }, (swappingSpeed * count) + 500)
             ++count
         }
         if (startIndex === array.length - 1) {
@@ -61,8 +59,7 @@ const selectionSort = (tempArr = array, count = 1) => {
 }
 
 const insertionSort = (tempArr = array, count = 1) => {
-    document.getElementById('button').disabled = true
-    document.getElementById('select').disabled = true
+    disableButton();
     for(let startIndex = 0; startIndex < tempArr.length - 1; startIndex++) {
         if(tempArr[startIndex] > tempArr[startIndex + 1]) {
             for(let currentIndex = startIndex + 1; currentIndex > 0; currentIndex--) {
@@ -75,22 +72,21 @@ const insertionSort = (tempArr = array, count = 1) => {
                         alterElements(
                             currentIdx, currentIdx - 1, arr[currentIdx], arr[currentIdx - 1]
                         )
-                    }, (1900 * count) + 500)
+                    }, (swappingSpeed * count) + 500)
                     ++count
                 }
                 else {
-                    if(startIndex === tempArr.length - 2 && currentIndex === 1) {
-                        setTimeout(enableButton, (1900 * count))
+                    if(startIndex === tempArr.length - 2) {
+                        setTimeout(enableButton, (swappingSpeed * count))
                     }
                     break;
                 }
                 if(startIndex === tempArr.length - 2 && currentIndex === 1) {
-                    setTimeout(enableButton, (1900 * count))
+                    setTimeout(enableButton, (swappingSpeed * count))
                 }
             }
         }
     }
-    console.log({tempArr, array})
 }
 
 // map to store and easily retrive the current sorting algorithm tom implement
@@ -99,6 +95,8 @@ let sortingAlgorithmMap = {
     'selectionSort': selectionSort,
     'insertionSort': insertionSort
 }
+
+let swappingSpeed = 2000;
 
 /**
  * Initializing divs with initial numbers and pre determined array
@@ -151,6 +149,19 @@ document.getElementById('select').onchange = () => {
     }
 }
 
+document.getElementById('speed').onchange = () => {
+    switch(document.getElementById('speed').selectedIndex) {
+        case 0:
+            swappingSpeed = 2000;
+        
+        case 1:
+            swappingSpeed = 3000;
+        
+        case 2: 
+            swappingSpeed = 4000
+    }
+}
+
 document.getElementById('button').onclick = () => {
     generateRandomArray();
 }
@@ -173,6 +184,13 @@ const alterElements = (indexOne, indexTwo, heightOne, heightTwo) => {
 const enableButton = () => {
     document.getElementById('button').disabled = false
     document.getElementById('select').disabled = false
+    document.getElementById('speed').disabled = false
+}
+
+const disableButton = () => {
+    document.getElementById('button').disabled = true
+    document.getElementById('select').disabled = true
+    document.getElementById('speed').disabled = true
 }
 
 //a function to generate a random array

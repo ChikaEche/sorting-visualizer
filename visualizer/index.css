@@ -19,7 +19,7 @@ body {
     background-color: #004FFF;
 }
 
-#select {
+#select, #speed {
     margin: 10px;
 }
 
