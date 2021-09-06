@@ -1,3 +1,4 @@
+# About
 A visual representation of how some sorting algorithms work behind the scenes.
 
 # Technologies used
